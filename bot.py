@@ -6,9 +6,9 @@ from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 # Telegram Bot Credentials
-API_ID = "YOUR_API_ID"
-API_HASH = "YOUR_API_HASH"
-BOT_TOKEN = "YOUR_BOT_TOKEN"
+API_ID = "18073399"
+API_HASH = "1a13234f38fc517092f1af85f1e74e40"
+BOT_TOKEN = "7732610185:AAGKCuF7GYT-YUMEmbckRGX-5UQU278FyDg"
 
 app = Client("yt_downloader_bot", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 
