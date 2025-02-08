@@ -5,6 +5,12 @@ import threading
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
+# Write the cookies from the environment variable to a file
+cookies_content = os.getenv("YOUTUBE_COOKIES")
+if cookies_content:
+    with open("cookies.txt", "w") as f:
+        f.write(cookies_content)
+
 # Telegram Bot Credentials
 API_ID = "18073399"
 API_HASH = "1a13234f38fc517092f1af85f1e74e40"
@@ -129,12 +135,14 @@ async def format_selection(bot, query):
 async def download_video_or_audio(bot, chat_id, url, format_type):
     filename = f"{DOWNLOAD_DIR}/output.{'mp3' if format_type == 'audio' else 'mp4'}"
     
-    ydl_opts = {
+        ydl_opts = {
         "outtmpl": filename,
         "format": "bestaudio" if format_type == "audio" else "best",
+        "cookies": "cookies.txt",  # ✅ Use the cookies file
         "progress_hooks": [lambda d: app.loop.create_task(progress_hook(d, bot.get_messages(chat_id, bot.get_history(chat_id)[0].message_id), chat_id))],
         "postprocessors": [{"key": "FFmpegExtractAudio", "preferredcodec": "mp3"}] if format_type == "audio" else [],
     }
+
 
     await bot.send_message(chat_id, "Downloading... 0%")
     try:
