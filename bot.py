@@ -1,4 +1,10 @@
 import os
+
+# Install FFmpeg if not installed
+if os.system("ffmpeg -version") != 0:
+    print("Installing FFmpeg...")
+    os.system("apt update && apt install -y ffmpeg")
+
 import yt_dlp
 import asyncio
 import threading
