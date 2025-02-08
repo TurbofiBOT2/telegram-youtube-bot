@@ -1,5 +1,0 @@
-pyrogram
-tgcrypto
-pytube
-ffmpeg
-imageio[ffmpeg]
